@@ -29,27 +29,38 @@ class AddressBook
     end
      
    # Search AddressBook for a specific entry by name
-   def binary_search(name)
+    def binary_search(name)
             lower = 0
-     upper = entries.length - 1
+        upper = entries.length - 1
  
      # #2
-     while lower <= upper
+        while lower <= upper
        # #3
-       mid = (lower + upper) / 2
-       mid_name = entries[mid].name
+            mid = (lower + upper) / 2
+            mid_name = entries[mid].name
  
        # #4
-       if name == mid_name
-         return entries[mid]
-       elsif name < mid_name
-         upper = mid - 1
-       elsif name > mid_name
-         lower = mid + 1
-       end
-     end
+            if name == mid_name
+                return entries[mid]
+            elsif name < mid_name
+                upper = mid - 1
+            elsif name > mid_name
+                lower = mid + 1
+            end
+        end
  
      # #5
-     return nil
-   end
+        return nil
+    end
+    # Iterative search
+    def iterative_search(name)
+        @entries.each do |entry|
+            if entry.name == name
+                return entry
+            end
+        end
+
+        return nil
+
+    end
 end
