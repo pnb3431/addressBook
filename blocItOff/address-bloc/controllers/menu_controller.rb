@@ -7,6 +7,8 @@ class MenuController
         @address_book = AddressBook.new
     end
     
+    
+    
     def main_menu
         puts "Main Menu - #{address_book.entries.count} entries"
         puts "1 - View all entries"
@@ -14,7 +16,8 @@ class MenuController
         puts "3 - Search for an entry"
         puts "4 - Import entries from a CSV"
         puts "5 - View Entry Number n"
-        puts "6 - Exit"
+        puts "6 - Nuke all entries"
+        puts "7 - Exit"
         print "Enter your selection: "
         
         selection = gets.to_i
@@ -40,6 +43,10 @@ class MenuController
                 search_by_number
                 main_menu
             when 6
+                system "clear"
+                @address_book.nuke
+                main_menu
+            when 7
                 puts "Good-bye!"
          
             exit(0)
@@ -48,9 +55,9 @@ class MenuController
                 system "clear"
                 puts "Sorry, that is not a valid input"
                 main_menu
-             end
         end
-        
+    end
+       
         def entry_submenu(entry)
      
             puts "n - next entry"
@@ -80,10 +87,14 @@ class MenuController
             end
         end
         
+        
+        
         def delete_entry(entry)
             address_book.entries.delete(entry)
             puts "#{entry.name} has been deleted"
         end
+        
+       
    
         def edit_entry(entry)
             # #4
